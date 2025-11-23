@@ -17,9 +17,9 @@ namespace ConsoleApp1
 
             Triangle triangle = new Triangle();
             triangle.InitializationSide(a,b,c);
-            triangle.CheckTriangle(a,b,c);
-            triangle.Perimeter(a,b,c);
-            triangle.Square(a,b,c);
+            triangle.CheckTriangle();
+            triangle.Perimeter();
+            triangle.Square();
             triangle.Display();
             
         }
@@ -37,40 +37,39 @@ namespace ConsoleApp1
                 sideC = c;
             }
             //метод Проверка существует ли треугольник
-            public void CheckTriangle(double a, double b, double c)
+            public void CheckTriangle()
             {
-                //if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA)
-                if (a + b > c && a + c > b && b + c > a)
+                if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA)
                 {
-                    Console.WriteLine($"\nТреугольник с сторонами {a}, {b}, {c} существует");
+                    Console.WriteLine($"\nТреугольник с сторонами {sideA}, {sideB}, {sideC} существует");
                 }
                 else
                 {
-                    Console.WriteLine($"\nТреугольник с сторонами {a}, {b}, {c}  не существует");
+                    Console.WriteLine($"\nТреугольник с сторонами {sideA}, {sideB}, {sideC}  не существует");
                 }
             }
             // метод для расчета периметра 
-            public void Perimeter(double a, double b, double c)
+            public void Perimeter()
             {
-                double perimeter = a + b + c;
+                double perimeter = sideA + sideB + sideC;
                 Console.WriteLine($"\nПериметр треугольника = {perimeter}");
             }
             //метод для расчета площади
-            public void Square(double a, double b, double c)
+            public void Square()
             {
                 //треугольник равносторонний или неn
-                if (a == b && a == c)
+                if (sideA == sideB && sideA == sideC)
                 //если треугольник равносторонний
                 {
-                    double square = (Math.Sqrt(3) / (4) * a * a);
+                    double square = (Math.Sqrt(3) / (4) * sideA * sideA);
                     Console.WriteLine($"\nТреугольник равносторонний. Площадь треугольника = {square}");
                 }
                 //если треугольник не равносторонний
                 //считаем по формуле Герона
                 else
                 {
-                    double semiPerimeter = a + b + c / 2;
-                    double square = Math.Sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
+                    double semiPerimeter = sideA + sideB + sideC / 2;
+                    double square = Math.Sqrt(semiPerimeter * (semiPerimeter - sideA) * (semiPerimeter - sideB) * (semiPerimeter - sideC));
                     Console.WriteLine($"\nТреугольник неравносторонний. Площадь треугольника = {square}");
                 }
             }
